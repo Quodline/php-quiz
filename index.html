@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>The PHP Quiz</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css2?family=Maven+Pro&display=swap" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+</head>
+
+<body>
+<h1>The PHP Quiz</h1>
+
+<main class="app">
+    <h2 class="title">{{ title }}</h2>
+    <article class="content" v-if="is('initial')">
+        <button @click="start">Start</button>
+    </article>
+    <article class="content" v-else-if="is('in_progress')">
+        <quiz-round :quizzes="generateQuizzes()" @complete="showResult"></quiz-round>
+    </article>
+    <article class="content" v-else-if="is('completed')">
+        <performance-report :result="result" @retry="restart"></performance-report>
+    </article>
+</main>
+<script src="script.js"></script>
+</body>
+</html>
